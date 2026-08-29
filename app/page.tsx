@@ -791,34 +791,363 @@ export default function Page() {
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-8 space-y-8 font-sans">
-            <div>
-              <h2 className="text-4xl font-black uppercase tracking-tight">FreeFrom14</h2>
-              <p className="font-mono text-xs text-[#7000ff] font-bold mt-2">MSc THESIS ARTIFACT // FULL-STACK ENGINE</p>
-            </div>
+          <div className="flex-1 overflow-y-auto p-5 sm:p-8 space-y-10 font-sans">
 
-            <div className="space-y-4">
-              <h3 className="text-lg font-black uppercase border-b-2 border-black pb-1">// THE PROBLEM</h3>
-              <p className="text-sm text-zinc-700 leading-relaxed text-justify">
-                Standard culinary databases process nutritional filters dynamically but break down under cascading nested relationships (e.g., cross-contamination profiles, chemical compounds, complex EU allergen mappings). The system demanded highly optimized relational index trees and bulletproof algorithmic safety.
+  {/* PROJECT INTRO */}
+  <div>
+    <p className="font-mono text-[10px] uppercase tracking-widest text-[#7000ff] font-bold mb-3">
+      MSc Computer Science // Research Project // 2026
+    </p>
+
+    <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight">
+      FreeFrom14
+    </h2>
+
+    <p className="mt-4 text-base sm:text-lg font-bold leading-relaxed max-w-xl">
+      Making allergen-aware recipe discovery easier to navigate.
+    </p>
+  </div>
+
+
+  {/* 01 — THE PROBLEM */}
+  <section className="space-y-4">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      01 // The Problem
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      The problem wasn't finding recipes.
+      <br />
+      It was trusting them.
+    </h3>
+
+    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed text-justify">
+      For people managing food allergies, finding something to cook can
+      involve far more than typing a recipe into a search bar. Recipe
+      information can be inconsistent and unstructured, requiring users
+      to manually inspect ingredients and repeatedly make decisions about
+      what to avoid.
+    </p>
+
+    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed text-justify">
+      FreeFrom14 explored how structured data, faceted search and
+      natural language processing could help make allergen-aware recipe
+      discovery easier to inspect and navigate.
+    </p>
+  </section>
+
+
+  {/* 02 — THE QUESTION */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      02 // The Question
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      Can intelligent search make allergen-aware recipe discovery easier?
+    </h3>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {[
+        ["DATA", "How can recipe information be responsibly acquired, audited and structured?"],
+        ["SEARCH", "Can faceted filtering help users navigate complex restrictions?"],
+        ["NLP", "Can semantic techniques improve ingredient understanding beyond exact keyword matching?"],
+        ["RESPONSIBILITY", "How can transparency and data integrity be prioritised in an allergen-aware context?"],
+      ].map(([title, text]) => (
+        <div
+          key={title}
+          className="border-2 border-black p-4 bg-white"
+        >
+          <h4 className="font-mono text-xs font-bold mb-2">
+            {title}
+          </h4>
+          <p className="text-xs sm:text-sm leading-relaxed text-zinc-700">
+            {text}
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+  {/* 03 — THE PIVOT */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      03 // The Pivot
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      When the research changed the build.
+    </h3>
+
+    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed text-justify">
+      The original project explored web scraping as a method of acquiring
+      recipe data. As the research progressed, questions around permissions,
+      provenance, reliability and ethical data acquisition became increasingly
+      important.
+    </p>
+
+    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed text-justify">
+      Rather than forcing the original approach, I reassessed the data
+      pipeline and explored more controlled sources, including authorised
+      APIs and open datasets.
+    </p>
+
+    <blockquote className="border-l-4 border-black pl-4 py-2 font-bold text-lg leading-relaxed">
+      The goal wasn't simply to collect more data. It was to build a
+      pipeline I could better understand, justify and audit.
+    </blockquote>
+  </section>
+
+
+  {/* 04 — THE SYSTEM */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      04 // The System
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      From fragmented data to structured search.
+    </h3>
+
+    <div className="space-y-2">
+      {[
+        ["01", "DATA SOURCES", "Authorised APIs + open datasets"],
+        ["02", "INGESTION", "Python processing pipeline"],
+        ["03", "TRANSFORMATION", "Clean + normalise recipe data"],
+        ["04", "ALLERGEN ENRICHMENT", "Structure information around 14 allergen groups"],
+        ["05", "NLP", "Regex + spaCy NER + Word2Vec"],
+        ["06", "DATABASE", "PostgreSQL via Supabase"],
+        ["07", "APPLICATION", "Flask + responsive interface"],
+      ].map(([number, title, text], index) => (
+        <div key={title}>
+          <div className="border-2 border-black bg-white p-4 flex gap-4">
+            <span className="font-mono text-xs font-bold text-[#7000ff]">
+              {number}
+            </span>
+
+            <div>
+              <h4 className="font-bold text-sm">
+                {title}
+              </h4>
+
+              <p className="text-xs sm:text-sm text-zinc-600 mt-1">
+                {text}
               </p>
             </div>
-
-            <div className="space-y-4">
-              <h3 className="text-lg font-black uppercase border-b-2 border-black pb-1">// TECHNICAL IMPLEMENTATION</h3>
-              <ul className="text-sm text-zinc-700 space-y-2 list-disc list-inside">
-                <li><strong className="text-black">Relational Optimization:</strong> Implemented specialized indexing schemas on Postgres arrays to prune query structures safely.</li>
-                <li><strong className="text-black">Dynamic Exclusions:</strong> Engineered strict, type-safe lookup algorithms parsing hierarchical food structures in under 45ms.</li>
-                <li><strong className="text-black">Responsive UI:</strong> Built high-speed interactive filter UI with Next.js state management.</li>
-              </ul>
-            </div>
-
-            <div className="bg-black p-4 text-[#39ff14] font-mono text-xs rounded border-2 border-black space-y-1">
-              <p>&gt; SYSTEM STATUS: STABLE</p>
-              <p>&gt; LATENCY: 34ms</p>
-              <p>&gt; COVERAGE: 14/14 EU STANDARD ALLERGEN CLASSES COMPLETE</p>
-            </div>
           </div>
+
+          {index < 6 && (
+            <div className="h-5 border-l-2 border-black ml-6" />
+          )}
+        </div>
+      ))}
+    </div>
+  </section>
+
+
+  {/* 05 — THE INTELLIGENCE */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      05 // The Intelligence
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      Why one method wasn't enough.
+    </h3>
+
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="border-2 border-black p-4 bg-[#fff3b0]">
+        <h4 className="font-mono text-xs font-bold">
+          REGEX
+        </h4>
+        <p className="mt-3 text-xs leading-relaxed">
+          Deterministic rules for known patterns and structured terms.
+        </p>
+      </div>
+
+      <div className="border-2 border-black p-4 bg-white">
+        <h4 className="font-mono text-xs font-bold">
+          spaCy NER
+        </h4>
+        <p className="mt-3 text-xs leading-relaxed">
+          Explored for identifying ingredient-related entities in less
+          structured text.
+        </p>
+      </div>
+
+      <div className="border-2 border-black p-4 bg-[#e0f2fe]">
+        <h4 className="font-mono text-xs font-bold">
+          WORD2VEC
+        </h4>
+        <p className="mt-3 text-xs leading-relaxed">
+          Used to explore semantic relationships between ingredients and
+          potential substitutions.
+        </p>
+      </div>
+    </div>
+
+    <p className="text-sm sm:text-base text-zinc-700 leading-relaxed">
+      Rather than treating NLP as a replacement for rules, the project
+      explored how deterministic and semantic approaches could complement
+      one another.
+    </p>
+  </section>
+
+
+  {/* 06 — SEARCH EXPERIENCE */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      06 // The Search Experience
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      Search should support exploration, not create more work.
+    </h3>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      {[
+        ["14 ALLERGEN GROUPS", "Structured around the major allergen categories recognised by UK/EU legislation."],
+        ["MULTIPLE FILTERS", "Supporting more complex combinations of exclusions."],
+        ["EXPLORATORY SEARCH", "Allowing users to progressively refine results."],
+        ["SUBSTITUTION EXPLORATION", "Moving beyond a simple include-or-exclude response."],
+      ].map(([title, text]) => (
+        <div
+          key={title}
+          className="border-2 border-black p-4 bg-white"
+        >
+          <h4 className="font-mono text-xs font-bold">
+            {title}
+          </h4>
+          <p className="mt-2 text-xs sm:text-sm text-zinc-700 leading-relaxed">
+            {text}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <blockquote className="border-l-4 border-black pl-4 py-2 font-bold leading-relaxed">
+      The aim wasn't to make dietary decisions for the user. It was to
+      make complex recipe information easier to inspect and navigate.
+    </blockquote>
+  </section>
+
+
+  {/* 07 — RESULTS */}
+  <section className="space-y-5 border-t-2 border-black pt-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      07 // Testing & Results
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      The system had to be tested — not just built.
+    </h3>
+
+    <div className="grid grid-cols-2 gap-3">
+      <div className="border-2 border-black p-4 bg-black text-white">
+        <p className="text-3xl sm:text-4xl font-black">
+          7,500
+        </p>
+        <p className="font-mono text-[10px] uppercase mt-2">
+          Recipes audited
+        </p>
+      </div>
+
+      <div className="border-2 border-black p-4 bg-[#39ff14]">
+        <p className="text-3xl sm:text-4xl font-black">
+          1,419
+        </p>
+        <p className="font-mono text-[10px] uppercase mt-2">
+          Erroneous flags removed
+        </p>
+      </div>
+
+      <div className="border-2 border-black p-4 bg-[#fff3b0]">
+        <p className="text-3xl sm:text-4xl font-black">
+          16
+        </p>
+        <p className="font-mono text-[10px] uppercase mt-2">
+          User test participants
+        </p>
+      </div>
+
+      <div className="border-2 border-black p-4 bg-white">
+        <p className="text-3xl sm:text-4xl font-black">
+          100%
+        </p>
+        <p className="font-mono text-[10px] uppercase mt-2">
+          Search & Filter task success
+        </p>
+      </div>
+    </div>
+
+    <p className="text-xs text-zinc-500 leading-relaxed">
+      Evaluation metrics are presented within the context of the MSc
+      research project and prototype evaluation.
+    </p>
+  </section>
+
+
+  {/* 08 — REFLECTION */}
+  <section className="space-y-5 border-t-2 border-black pt-8 pb-8">
+    <p className="font-mono text-[10px] font-bold text-[#7000ff] uppercase tracking-widest">
+      08 // Reflection
+    </p>
+
+    <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+      The project changed the way I think about building with data.
+    </h3>
+
+    <div className="space-y-4 text-sm sm:text-base text-zinc-700 leading-relaxed">
+      <div>
+        <h4 className="font-bold text-black">
+          Data quality shapes everything.
+        </h4>
+        <p>
+          The quality and provenance of input data affected every stage
+          of the system.
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-black">
+          One technique isn't always enough.
+        </h4>
+        <p>
+          Deterministic rules and semantic NLP approaches each had
+          strengths and limitations.
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-black">
+          Safety requires transparency.
+        </h4>
+        <p>
+          In an allergen-aware context, uncertainty matters. A system
+          should help users inspect information rather than create false
+          confidence.
+        </p>
+      </div>
+
+      <div>
+        <h4 className="font-bold text-black">
+          Research changes the build.
+        </h4>
+        <p>
+          One of the biggest lessons was learning to change direction
+          when evidence challenged the original plan.
+        </p>
+      </div>
+    </div>
+
+    <blockquote className="border-2 border-black p-5 bg-[#7000ff] text-white font-bold text-lg leading-relaxed">
+      The best outcome wasn't following my original idea perfectly.
+      It was learning when — and why — to rethink it.
+    </blockquote>
+  </section>
+
+</div>
         </div>
       </div>
       
