@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { createPortal } from "react-dom";
+import { useForm, ValidationError } from '@formspree/react';
 
 // 1. TYPEWRITER COMPONENT
 interface TypewriterProps {
@@ -285,11 +286,7 @@ export default function Page() {
     useState<typeof skills[number] | null>(null);
   const displaySkill = activeSkill ?? selectedSkill;
 
-  const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("Form submitted successfully.");
-    setIsContactOpen(false);
-  };
+  const [state, handleSubmit] = useForm('mdeaoozy');
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -7687,7 +7684,7 @@ export default function Page() {
 
 
       {/* ========================================== */}
-      {/* 📬 SECURE CONTACT DRAWER                   */}
+      {/* SECURE CONTACT DRAWER                   */}
       {/* ========================================== */}
       <div
         className={`fixed inset-0 z-50 flex justify-end transition-all duration-700 ease-in-out ${isContactOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -7699,7 +7696,7 @@ export default function Page() {
         />
 
         <form
-          onSubmit={handleContactSubmit}
+          onSubmit={handleSubmit}
           className={`relative h-full w-full max-w-md border-l-4 border-black bg-[#fdfcf0] p-8 flex flex-col justify-between transition-transform duration-700 ease-in-out transform shadow-[-10px_0px_0px_#000] ${isContactOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
@@ -7721,9 +7718,11 @@ export default function Page() {
                 <input
                   required
                   type="text"
+                  name="name"
                   placeholder="Your Name"
                   className="bg-white border-2 border-black p-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#7000ff]"
                 />
+                <ValidationError field="name" errors={state.errors} />
               </div>
 
               <div className="flex flex-col gap-1">
@@ -7731,9 +7730,11 @@ export default function Page() {
                 <input
                   required
                   type="email"
+                  name="email"
                   placeholder="name@domain.com"
                   className="bg-white border-2 border-black p-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#7000ff]"
                 />
+                <ValidationError field="email" errors={state.errors} />
               </div>
 
               <div className="flex flex-col gap-1">
@@ -7741,18 +7742,30 @@ export default function Page() {
                 <textarea
                   required
                   rows={6}
+                  name="message"
                   placeholder="Write your system parameters or project inquiries here..."
                   className="bg-white border-2 border-black p-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#7000ff]"
                 />
+                <ValidationError field="message" errors={state.errors} />
               </div>
             </div>
           </div>
 
+          {state.succeeded && (
+            <div className="border-2 border-black bg-[#39ff14] p-3 font-mono text-xs font-bold uppercase tracking-wide">
+              TRANSMISSION COMPLETE ✓
+              <span className="block mt-1 font-normal">
+                Your message has been received.
+              </span>
+            </div>
+          )}
+
           <button
             type="submit"
+            disabled={state.submitting}
             className="w-full bg-[#39ff14] text-black border-2 border-black p-3 font-mono text-sm font-black tracking-widest uppercase shadow-[4px_4px_0px_#000] hover:shadow-[2px_2px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 transition-all cursor-pointer mt-4"
           >
-            MESSAGE ➔
+            {state.submitting ? 'TRANSMITTING...' : 'MESSAGE ➔'}
           </button>
         </form>
       </div>
