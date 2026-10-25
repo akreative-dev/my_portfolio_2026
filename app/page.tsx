@@ -91,7 +91,7 @@ function Typewriter({
   );
 }
 
-// 2. BRUTALIST BACK TO TOP COMPONENT
+// 2. BACK TO TOP COMPONENT
 function ScrollToTop({
   onBackToWheel,
 }: {
@@ -135,7 +135,7 @@ function ScrollToTop({
     <button
       onClick={handleBackToWheel}
       aria-label="Back to wheel"
-      className="fixed bottom-10 right-2 sm:bottom-8 sm:right-4 lg:bottom-8 lg:right-6 z-[99999] flex items-center gap-1 sm:gap-1.5 lg:gap-2 px-1.5 sm:px-2.5 lg:px-3 py-1 sm:py-1.5 lg:py-2 bg-black border-2 border-[#39ff14] text-[#39ff14] font-mono text-[7px] sm:text-[8px] lg:text-[10px] font-black uppercase tracking-[0.12em] sm:tracking-widest shadow-[2px_2px_0px_#39ff14] sm:shadow-[3px_3px_0px_#39ff14] lg:shadow-[4px_4px_0px_#39ff14] transition-all focus:outline-none active:translate-x-0 active:translate-y-0 active:shadow-none cursor-pointer whitespace-nowrap"
+      className="fixed bottom-10 right-2 sm:bottom-8 sm:right-4 lg:bottom-8 lg:right-6 z-[99999] flex items-center gap-1 sm:gap-1.5 lg:gap-2 px-3 sm:px-2.5 lg:px-3 py-2 sm:py-1.5 lg:py-2 bg-black border-2 border-[#39ff14] text-[#39ff14] font-mono text-[10px] sm:text-[8px] lg:text-[10px] font-black uppercase tracking-[0.12em] sm:tracking-widest shadow-[2px_2px_0px_#39ff14] sm:shadow-[3px_3px_0px_#39ff14] lg:shadow-[4px_4px_0px_#39ff14] transition-all focus:outline-none active:translate-x-0 active:translate-y-0 active:shadow-none cursor-pointer whitespace-nowrap"
     >
       <svg
         className="w-2.5 h-2.5 sm:w-3 sm:h-3 lg:w-4 lg:h-4 stroke-[2.5] shrink-0"
@@ -333,17 +333,17 @@ export default function Page() {
           <div className="flex items-center justify-center gap-2 sm:gap-3 whitespace-nowrap">
 
             <button
-              onClick={() => scrollToSection('manifesto')}
-              className="hover:text-[#7000ff] text-xs font-black tracking-wider uppercase px-2 py-1 transition-colors cursor-pointer"
-            >
-              // MANIFESTO
-            </button>
-
-            <button
               onClick={() => scrollToSection('artifacts')}
               className="hover:text-[#ff00ff] text-xs font-black tracking-wider uppercase px-2 py-1 transition-colors cursor-pointer"
             >
               // PROJECTS
+            </button>
+
+            <button
+              onClick={() => scrollToSection('manifesto')}
+              className="hover:text-[#7000ff] text-xs font-black tracking-wider uppercase px-2 py-1 transition-colors cursor-pointer"
+            >
+              // ABOUT ME
             </button>
 
             <button
@@ -383,6 +383,35 @@ export default function Page() {
       {/* ========================================== */}
       {/* ACT I: PROPORTIONAL RADIAL DIAL HUB     */}
       {/* ========================================== */}
+    
+      {/* MOBILE INTRO */}
+      <div className="sm:hidden relative z-10 w-full px-3 pt-3 pb-3 bg-[#fdfcf0] text-center">
+        <h1 className="font-mono mt-5 text-xl font-black uppercase tracking-tight leading-tight">
+          <span className="bg-gradient-to-r from-[#ff00ff] to-[#7000ff] bg-clip-text text-transparent">
+            HI, I'M ALEKS.
+          </span>
+        </h1>
+
+        <h2 className="mt-2 font-mono text-xs font-black uppercase tracking-wide leading-snug text-[#7000ff]">
+          I'm a creative developer
+          <span className="block">& ethical systems engineer.</span>
+        </h2>
+
+        
+        
+        <span className="mx-auto mb-2 mt-5 block w-46 h-[2px] bg-[#ff00ff]" />
+        <p className="mx-auto mt-2 max-w-[260px] font-mono text-[8px] font-bold uppercase tracking-wider leading-relaxed text-zinc-500">
+          <span className="text-[#ff00ff]">|</span> BUILDING THOUGHTFUL, HUMAN-CENTRED
+          <span className="block">
+             DIGITAL EXPERIENCES. <span className="text-[#ff00ff]">|</span>
+          </span>
+        </p>
+      </div>
+
+
+
+
+      
       <main
         id="wheel"
         className="flex-1 flex flex-col items-center justify-start p-4 md:p-12 max-w-6xl mx-auto w-full relative"
@@ -585,7 +614,7 @@ export default function Page() {
 
           {/* INNER CORE DYNAMIC VIEWPORT */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-20">
-  <div className="text-center w-[42%] aspect-square px-2 sm:px-4 flex flex-col justify-center items-center overflow-hidden">
+            <div className="text-center w-[42%] aspect-square px-2 sm:px-4 flex flex-col justify-center items-center overflow-hidden">
               {isHoveringCore ? (
                 <span className="font-mono text-xs md:text-sm font-black text-[#39ff14] tracking-widest block animate-pulse">
                   Discover the thinking behind the work ➔
@@ -601,27 +630,35 @@ export default function Page() {
                   >
                     {displaySkill.name}
                   </h3>
-                  <p className="font-mono text-[7px] sm:text-[9px] md:text-[10px] uppercase tracking-wider text-zinc-500 font-bold leading-tight">
+                  <p className="font-mono text-[7px] sm:text-[9px] md:text-xs uppercase tracking-wider text-zinc-500 font-bold leading-tight">
                     {displaySkill.tagline}
                   </p>
                   <p className="hidden sm:block font-sans text-[11px] md:text-xs text-zinc-700 leading-normal">
                     {displaySkill.desc}
                   </p>
-                  <p className="font-mono text-[9px] text-zinc-900 font-black pt-1">
+                  <p className="font-mono text-[9px] md:text-xs text-zinc-900 font-black pt-1">
                     {displaySkill.projects.length} RELATED PROJECTS ↓
                   </p>
                 </div>
               ) : (
-                <div className="font-mono w-full max-w-[150px] sm:max-w-[190px] md:max-w-[270px] text-xs sm:text-sm md:text-base font-bold text-purple-500 leading-relaxed flex flex-col items-center justify-center gap-2 -translate-y-1 sm:translate-y-0">
-                  <Typewriter
-                    text="Hi, I'm Aleks. I'm a creative developer & ethical systems engineer."
-                    speed={35}
-                  />
+                
+                <div className="w-full max-w-[150px] sm:max-w-[190px] md:max-w-[270px] text-[9px] sm:text-[10px] md:text-sm font-mono font-bold leading-relaxed flex flex-col items-center justify-center gap-2 -translate-y-1 sm:translate-y-0">
+                  <div className="hidden sm:block bg-gradient-to-r from-[#ff00ff] to-[#7000ff] bg-clip-text text-transparent">
+                    <Typewriter
+                      text="Hi, I'm Aleks. I'm a creative developer & ethical systems engineer."
+                      speed={35}
+                    />
+                  </div>
 
-                  <div className="w-full mt-4 pt-2 border-t-1 border-[#39ff14]">
-                    <span className="block text-black text-[7px] sm:text-[8px] md:text-[9px] font-black uppercase tracking-widest text-center leading-tight">
-                      TAP / CLICK A SEGMENT TO EXPLORE MY SKILLS
-                      <span className="text-[#39ff14] ml-1">→</span>
+                  <div className="w-full mt-1 flex flex-col items-center">
+                    <span className="block w-18 h-[2px] bg-[#39ff14] mb-2" />
+
+                    <span className="block text-black text-[9px] sm:text-[8px] md:text-[9px] font-black uppercase tracking-wide sm:tracking-widest leading-snug text-center">
+                      TAP A SEGMENT
+                      <span className="block">
+                        TO EXPLORE MY SKILLS
+                        <span className="text-[#168000] ml-1">→</span>
+                      </span>
                     </span>
                   </div>
                 </div>
@@ -670,7 +707,6 @@ export default function Page() {
 
                       setExpandedProject(project.id);
                       setActiveSkill(null);
-                      setSelectedSkill(null);
                     }}
                     className="w-full border-2 border-black bg-[#fdfcf0] px-3 py-2.5 text-left flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-tight hover:bg-black hover:text-white transition-colors cursor-pointer"
                   >
@@ -820,17 +856,29 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex gap-3 pt-4 border-t border-dashed border-zinc-300">
+            
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-dashed border-zinc-300">
               <a
                 href="https://akreative.eu.pythonanywhere.com/"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center bg-[#7000ff] text-[#39ff14] px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:bg-black hover:shadow-[6px_6px_0px_#7000ff] transition-all"
+                className="inline-flex items-center bg-[#7000ff] text-[#39ff14] px-4 py-3 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#000] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#7000ff] transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7000ff]"
               >
                 LIVE DEMO ↗
               </a>
+
+              <a
+                href="https://github.com/akreative-dev/free_from_14"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center bg-white text-black px-4 py-3 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#7000ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#7000ff] transition-all focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7000ff]"
+              >
+                VIEW SOURCE CODE ↗
+              </a>
             </div>
+
 
             <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-zinc-300 font-mono text-[11px] font-bold text-zinc-600">
               <span className="bg-[#7000ff]/10 text-[#7000ff] px-2 py-1">#HTML/CSS/JS/PHP</span>
@@ -875,6 +923,18 @@ export default function Page() {
               Explored CNN architecture, regularisation and transfer learning for image
               classification, comparing several model variations before testing MobileNetV2.
             </p>
+
+            <div className="flex flex-wrap gap-3 mt-6">
+              <a
+                href="https://github.com/akreative-dev/cifar10-image-classification"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#ff00ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#ff00ff] transition-all"
+              >
+                VIEW SOURCE CODE ↗
+              </a>
+            </div>
 
             <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-zinc-300 font-mono text-[10px] font-bold text-zinc-600">
               <span className="bg-[#ff00ff]/10 text-[#ff00ff] px-2 py-1">#PYTHON</span>
@@ -970,6 +1030,19 @@ export default function Page() {
               A web-based IT support management system for reporting, tracking and updating
               school IT issues, built with PHP, JavaScript and a relational database.
             </p>
+
+
+            <div className="flex flex-wrap gap-3 mt-6">
+              <a
+                href="https://github.com/akreative-dev/wearview_academy"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#00f0ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#00f0ff] transition-all"
+              >
+                VIEW SOURCE CODE ↗
+              </a>
+            </div>
 
             <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-zinc-300 font-mono text-[11px] font-bold text-zinc-600">
               <span className="bg-[#00f0ff]/10 text-[#00f0ff] px-2 py-1">#PHP</span>
@@ -1127,7 +1200,8 @@ export default function Page() {
             </div>
           </div>
 
-          {/* ARTEFACT G: LIBRARY CATALOGUE CARD*/}
+          
+          {/* ARTEFACT G: LIBRARY CATALOGUE CARD */}
           <div
             id="catalogue-card"
             onClick={() =>
@@ -1142,12 +1216,11 @@ export default function Page() {
             }`}
           >
             <div className="flex h-full flex-col justify-between">
-
               <div>
                 <div className="flex items-start justify-between mb-4">
                   <span className="font-mono text-[9px] font-bold bg-black text-white px-2 py-0.5 tracking-widest">
-                          PYTHON // PROJECT
-                        </span>
+                    PYTHON // PROJECT
+                  </span>
 
                   <span className="font-mono text-xs font-bold">
                     2025
@@ -1155,13 +1228,11 @@ export default function Page() {
                 </div>
 
                 <h3 className="text-3xl font-black uppercase tracking-tight font-sans mb-2 group-hover:text-[#00f0ff] transition-colors">
-                        Library Catalogue
-                      </h3>
+                  Library Catalogue
+                </h3>
 
                 <p className="mt-3 text-sm leading-relaxed">
-                  A Python-based library management system exploring
-                  object-oriented programming, catalogue operations and
-                  book borrowing logic.
+                  A Python library management system built using object-oriented design, with catalogue management, user records and book borrowing workflows.
                 </p>
               </div>
 
@@ -1178,22 +1249,41 @@ export default function Page() {
                   </div>
 
                   <div>
-                    <p>SYSTEM</p>
-                    <p className="mt-1 text-sm">LOANS</p>
+                    <p>TESTS</p>
+                    <p className="mt-1 text-sm">19 PASS</p>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-zinc-300 font-mono text-[11px] font-bold text-zinc-600">
-                        <span className="bg-[#39ff14]/10 text-[#39ff14] px-2 py-1">#PYTHON</span>
-                        <span className="bg-[#ff00ff]/10 text-[#ff00ff] px-2 py-1">#OOP</span>
-                        <span className="bg-[#00f0ff]/10 text-[#00f0ff] px-2 py-1">#LIBRARY-SYSTEMS</span>
-                        <span className="bg-zinc-100 px-2 py-1">#DATA_STRUCTURES</span>
-                      </div>
-              </div>
+                
+                <div className="flex flex-wrap gap-3 mt-8">
+                  <a
+                    href="https://github.com/akreative-dev/library-catalogue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(event) => event.stopPropagation()}
+                    className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#00f0ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#00f0ff] transition-all"
+                  >
+                    VIEW SOURCE CODE ↗
+                  </a>
+                </div>
 
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-dashed border-zinc-300 font-mono text-[11px] font-bold text-zinc-600">
+                  <span className="bg-[#39ff14]/10 text-[#39ff14] px-2 py-1">
+                    #PYTHON
+                  </span>
+                  <span className="bg-[#ff00ff]/10 text-[#ff00ff] px-2 py-1">
+                    #OOP
+                  </span>
+                  <span className="bg-[#00f0ff]/10 text-[#00f0ff] px-2 py-1">
+                    #UNIT-TESTING
+                  </span>
+                  <span className="bg-zinc-100 px-2 py-1">
+                    #DATA_STRUCTURES
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -2763,6 +2853,19 @@ export default function Page() {
                 </p>
               </div>
 
+              <div className="flex flex-wrap gap-3 mt-6">
+                <a
+                  href="https://github.com/akreative-dev/cifar10-image-classification"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(event) => event.stopPropagation()}
+                  className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#ff00ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#ff00ff] transition-all"
+                >
+                  VIEW CODE ↗
+                </a>
+              </div>
+
+
               {/* 01 — THE STARTING POINT */}
               <section className="space-y-6 border-t-2 border-black pt-8">
                 <p className="font-mono text-[10px] font-bold text-[#ff00ff] uppercase tracking-widest">
@@ -2803,7 +2906,7 @@ export default function Page() {
                       BASELINE
                     </p>
                     <p className="font-black text-lg mt-1">
-                      71%
+                      69%
                     </p>
                   </div>
 
@@ -2862,7 +2965,7 @@ export default function Page() {
 
                       <div className="text-right shrink-0">
                         <p className="font-black text-2xl sm:text-3xl">
-                          71%
+                          69%
                         </p>
 
                         <p className="font-mono text-[9px] uppercase text-zinc-500">
@@ -2902,7 +3005,7 @@ export default function Page() {
 
                     <div className="mt-3 border-t border-dashed border-zinc-300 pt-3">
                       <p className="font-mono text-[9px] uppercase text-zinc-500">
-                        +1% vs baseline
+                        +3% vs baseline
                       </p>
                     </div>
                   </div>
@@ -2937,7 +3040,7 @@ export default function Page() {
 
                     <div className="mt-3 border-t border-dashed border-zinc-300 pt-3">
                       <p className="font-mono text-[9px] uppercase text-zinc-500">
-                        +2% vs baseline
+                        +4% vs baseline
                       </p>
                     </div>
                   </div>
@@ -2972,7 +3075,7 @@ export default function Page() {
 
                     <div className="mt-3 border-t border-dashed border-zinc-300 pt-3">
                       <p className="font-mono text-[9px] uppercase text-[#ff00ff] ">
-                        +4% vs baseline · lowest loss: 0.71
+                        +6% vs baseline · lowest loss: 0.71
                       </p>
                     </div>
                   </div>
@@ -3120,13 +3223,13 @@ export default function Page() {
                 <div className="space-y-3">
 
                   {/* MODEL 1 */}
-                  <div className="border-2 border-black bg-white p-4">
+                  <div className="border-2 border-black bg-white p-4 sm:p-5">
                     <div className="flex gap-4 items-start">
                       <span className="font-mono text-xs font-black text-[#ff00ff] min-w-7">
                         01
                       </span>
 
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <p className="font-mono text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
                           ARCHITECTURE + INITIALISATION
                         </p>
@@ -3137,20 +3240,37 @@ export default function Page() {
 
                         <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed mt-2">
                           Increased network depth and introduced He kernel initialisation.
-                          Accuracy increased from 71% to 72%.
+                          Accuracy reached 72%, a 3-percentage-point improvement over
+                          the 69% baseline.
                         </p>
                       </div>
                     </div>
+
+                    <div className="mt-5 ml-11 w-auto mr-6 border-2 border-black bg-white p-3">
+                      <Image
+                        src="/cifar10/model1-graph.png"
+                        alt="Model 1 CIFAR-10 training results"
+                        width={1200}
+                        height={900}
+                        className="block w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 768px"
+                      />
+                      <p className="mt-3 border-t border-zinc-200 pt-2 font-mono text-[10px] uppercase tracking-wide text-zinc-600">
+                        MODEL 01 // TRAINING RESULTS
+                      </p>
+                    </div>
                   </div>
 
+
+                  
                   {/* MODEL 2 */}
-                  <div className="border-2 border-black bg-white p-4">
+                  <div className="border-2 border-black bg-white p-4 sm:p-5">
                     <div className="flex gap-4 items-start">
                       <span className="font-mono text-xs font-black text-[#ff00ff] min-w-7">
                         02
                       </span>
 
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <p className="font-mono text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
                           ARCHITECTURE DEPTH
                         </p>
@@ -3160,12 +3280,28 @@ export default function Page() {
                         </h4>
 
                         <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed mt-2">
-                          Increased the network depth again, reaching three convolutional and
-                          pooling blocks. Accuracy increased to 73%.
+                          Increased the architecture to three convolutional and pooling
+                          blocks. Accuracy reached 73%, a 4-percentage-point improvement
+                          over the 69% baseline.
                         </p>
                       </div>
                     </div>
+
+                    <div className="mt-5 ml-11 mr-6 border-2 border-black bg-white p-3">
+                      <Image
+                        src="/cifar10/model2-graph.png"
+                        alt="Model 2 CIFAR-10 training results for the three-block VGG-inspired CNN"
+                        width={1200}
+                        height={900}
+                        className="block w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                      />
+                      <p className="mt-3 border-t border-zinc-200 pt-2 font-mono text-[10px] uppercase tracking-wide text-zinc-600">
+                        MODEL 02 // THREE-BLOCK CNN
+                      </p>
+                    </div>
                   </div>
+
 
                   {/* MODEL 3 */}
                   <div className="border-2 border-black bg-[#e0f2fe] p-4">
@@ -3189,6 +3325,21 @@ export default function Page() {
                         </p>
                       </div>
                     </div>
+                      <div className="mt-5 ml-11 w-auto mr-6 border-2 border-black bg-white p-3">
+                        <div className="w-full overflow-hidden">
+                          <Image
+                            src="/cifar10/model3-graph.png"
+                            alt="Model 3 CIFAR-10 training results for the three-block CNN with 20 percent dropout"
+                            width={1200}
+                            height={900}
+                            className="block w-full h-auto"
+                            sizes="(max-width: 768px) 100vw, 700px"
+                          />
+                        </div>
+                        <p className="mt-3 border-t border-zinc-200 pt-2 font-mono text-[10px] uppercase tracking-wide text-zinc-600">
+                          MODEL 03 // 20% DROPOUT
+                        </p>
+                      </div>
                   </div>
 
                   {/* MODEL 4 */}
@@ -3215,30 +3366,63 @@ export default function Page() {
                     </div>
                   </div>
 
+                  
                   {/* MODEL 5 */}
-                  <div className="border-2 border-black bg-[#ffb7ef] p-4">
+                  <div className="border-2 border-black bg-white p-4 sm:p-5">
                     <div className="flex gap-4 items-start">
                       <span className="font-mono text-xs font-black text-[#ff00ff] min-w-7">
                         05
                       </span>
 
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <p className="font-mono text-[9px] font-bold text-zinc-500 uppercase tracking-widest">
                           DATA AUGMENTATION
                         </p>
 
                         <h4 className="font-black text-lg mt-1">
-                          + Flips + Random Cropping
+                          Random Flips + Random Cropping
                         </h4>
 
                         <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed mt-2">
-                          Tested minimal augmentation on the training data. The first run
-                          plateaued at 10%, and simplifying the architecture eventually
-                          improved the result to 55%.
+                          Introduced data augmentation using random flips and cropping
+                          to improve generalisation. Accuracy fell to 55%, below the
+                          69% baseline, suggesting that the augmentation strategy or
+                          its interaction with the model needed further tuning.
                         </p>
                       </div>
                     </div>
+
+                    {/* MODEL 5 — GRAPH 1 */}
+                    <div className="mt-5 ml-11 mr-6 border-2 border-black bg-white p-3">
+                      <Image
+                        src="/cifar10/model5-graph1.png"
+                        alt="Model 5 CIFAR-10 data augmentation experiment, graph 1"
+                        width={1200}
+                        height={900}
+                        className="block w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                      />
+                      <p className="mt-3 border-t border-zinc-200 pt-2 font-mono text-[10px] uppercase tracking-wide text-zinc-600">
+                        MODEL 05 // AUGMENTATION RESULTS 01
+                      </p>
+                    </div>
+
+                    {/* MODEL 5 — GRAPH 2 */}
+                    <div className="mt-4 ml-11 mr-6 border-2 border-black bg-white p-3">
+                      <Image
+                        src="/cifar10/model5-graph2.png"
+                        alt="Model 5 CIFAR-10 data augmentation experiment, graph 2"
+                        width={1200}
+                        height={900}
+                        className="block w-full h-auto"
+                        sizes="(max-width: 768px) 100vw, 700px"
+                      />
+                      <p className="mt-3 border-t border-zinc-200 pt-2 font-mono text-[10px] uppercase tracking-wide text-zinc-600">
+                        MODEL 05 // AUGMENTATION RESULTS 02
+                      </p>
+                    </div>
                   </div>
+
 
                   {/* MODEL 6 */}
                   <div className="border-4 border-black bg-[#39ff14] p-5 shadow-[5px_5px_0px_#000]">
@@ -4352,7 +4536,7 @@ export default function Page() {
             {/* PROJECT INTRO */}
             <div className="space-y-5">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-widest text-[#00a8b5] font-bold mb-3">
+                <p className="font-mono text-[10px] uppercase tracking-widest text-[#009fbd] font-bold mb-3">
                   PHP // MYSQL // JAVASCRIPT // 2025
                 </p>
 
@@ -4370,11 +4554,23 @@ export default function Page() {
                   A PHP/MySQL support management system designed to handle staff IT requests from issue submission through technician resolution.
                 </p>
               </div>
+
+              <div className="flex flex-wrap gap-3 mt-6">
+                <a
+                  href="https://github.com/akreative-dev/wearview_academy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(event) => event.stopPropagation()}
+                  className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#00f0ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#00f0ff] transition-all"
+                >
+                  VIEW CODE ↗
+                </a>
+              </div>
             </div>
 
             {/* SYSTEM SNAPSHOT */}
             <section className="space-y-6 border-t-2 border-black pt-8">
-              <p className="font-mono text-[10px] font-bold text-[#00a8b5] uppercase tracking-widest">
+              <p className="font-mono text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                 01 // The System
               </p>
 
@@ -4394,7 +4590,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     AUTHENTICATED ACCESS
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4405,17 +4601,17 @@ export default function Page() {
 
               <div className="grid grid-cols-1 sm:grid-cols-5 gap-2 items-stretch">
                 <div className="border-2 border-black bg-white p-4 text-center">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">01</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">01</p>
                   <p className="font-black text-sm uppercase mt-2">LOGIN</p>
                 </div>
-                <div className="hidden sm:flex items-center justify-center font-black text-[#00a8b5]">→</div>
+                <div className="hidden sm:flex items-center justify-center font-black text-[#00f0ff]">→</div>
                 <div className="border-2 border-black bg-white p-4 text-center">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">02</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">02</p>
                   <p className="font-black text-sm uppercase mt-2">REPORT</p>
                 </div>
-                <div className="hidden sm:flex items-center justify-center font-black text-[#00a8b5]">→</div>
+                <div className="hidden sm:flex items-center justify-center font-black text-[#00f0ff]">→</div>
                 <div className="border-2 border-black bg-white p-4 text-center">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">03</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">03</p>
                   <p className="font-black text-sm uppercase mt-2">TRACK</p>
                 </div>
               </div>
@@ -4432,7 +4628,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     STAFF ISSUE LOG
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4453,7 +4649,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     TECHNICIAN DASHBOARD
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4464,7 +4660,7 @@ export default function Page() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="border-2 border-black bg-[#dffcff] p-5">
-                  <p className="font-mono text-[9px] font-bold text-[#00a8b5] uppercase tracking-widest">
+                  <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
                     STAFF WORKFLOW
                   </p>
                   <p className="text-xl font-black uppercase mt-2">
@@ -4477,7 +4673,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-bold text-[#00a8b5] uppercase tracking-widest">
+                  <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
                     TECHNICIAN WORKFLOW
                   </p>
                   <p className="text-xl font-black uppercase mt-2">
@@ -4493,7 +4689,7 @@ export default function Page() {
 
             {/* BUILD */}
             <section className="space-y-6 border-t-2 border-black pt-8">
-              <p className="font-mono text-[10px] font-bold text-[#00a8b5] uppercase tracking-widest">
+              <p className="font-mono text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                 02 // Building It
               </p>
 
@@ -4503,7 +4699,7 @@ export default function Page() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">SERVER</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">SERVER</p>
                   <h4 className="font-black text-xl uppercase mt-2">PHP</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Handles form processing, authentication flow, validation and database operations.
@@ -4511,7 +4707,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">DATABASE</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">DATABASE</p>
                   <h4 className="font-black text-xl uppercase mt-2">MySQL + PDO</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Stores submitted IT issues and supports retrieval and status updates through PDO.
@@ -4519,7 +4715,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">VALIDATION</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">VALIDATION</p>
                   <h4 className="font-black text-xl uppercase mt-2">Client + Server</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     JavaScript provides immediate feedback while server-side validation remains the control layer for submitted data.
@@ -4527,7 +4723,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">INTERFACE</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">INTERFACE</p>
                   <h4 className="font-black text-xl uppercase mt-2">Responsive CSS</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Flexible layouts and mobile/tablet media queries were used to adapt the prototype to different screen sizes.
@@ -4538,7 +4734,7 @@ export default function Page() {
 
             {/* SECURITY */}
             <section className="space-y-6 border-t-2 border-black pt-8">
-              <p className="font-mono text-[10px] font-bold text-[#00a8b5] uppercase tracking-widest">
+              <p className="font-mono text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                 03 // Security & Validation
               </p>
 
@@ -4558,7 +4754,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     VALIDATION IN ACTION
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4569,7 +4765,7 @@ export default function Page() {
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">ACCESS</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">ACCESS</p>
                   <h4 className="font-black text-lg uppercase mt-2">Server-side login validation</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     The prototype restricted access to staff or technician accounts through server-side validation.
@@ -4577,7 +4773,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">INPUT</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">INPUT</p>
                   <h4 className="font-black text-lg uppercase mt-2">Sanitisation + validation</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Input was validated on the server and sanitised, with JavaScript used to improve feedback and user experience.
@@ -4585,7 +4781,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-[#dffcff] p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">TEST RESULT</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">TEST RESULT</p>
                   <h4 className="font-black text-lg uppercase mt-2">No SQL injection found</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Security testing identified no SQL injection vulnerability, while also exposing further session and header hardening opportunities.
@@ -4594,7 +4790,7 @@ export default function Page() {
               </div>
 
               <div className="border-4 border-black bg-black text-white p-5 sm:p-6 shadow-[6px_6px_0px_#00f0ff]">
-                <p className="font-mono text-[9px] font-black text-[#39ff14] uppercase tracking-widest">
+                <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">
                   // CRITICAL EVALUATION
                 </p>
                 <p className="mt-3 text-base sm:text-lg leading-relaxed text-zinc-100">
@@ -4605,7 +4801,7 @@ export default function Page() {
 
             {/* UX TESTING */}
             <section className="space-y-6 border-t-2 border-black pt-8">
-              <p className="font-mono text-[10px] font-bold text-[#00a8b5] uppercase tracking-widest">
+              <p className="font-mono text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                 04 // UX & Testing
               </p>
 
@@ -4625,7 +4821,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     ACTIVE JOB QUEUE
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4646,7 +4842,7 @@ export default function Page() {
                   />
                 </div>
                 <div className="mt-3 border-t-2 border-black pt-3 flex items-center justify-between gap-3">
-                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#00a8b5]">
+                  <p className="font-mono text-xs font-black uppercase tracking-widest text-[#009fbd]">
                     STATUS UPDATE
                   </p>
                   <p className="font-mono text-[9px] uppercase tracking-widest text-zinc-500 text-right">
@@ -4672,14 +4868,14 @@ export default function Page() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">WHAT WORKED</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">WHAT WORKED</p>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Users found the flow logical and easy to follow, while login and issue submission worked correctly during observation.
                   </p>
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">WHAT NEEDED WORK</p>
+                  <p className="font-mono text-[9px] font-black text-[#009fbd] uppercase tracking-widest">WHAT NEEDED WORK</p>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Testing highlighted contrast, navigation and smaller-screen job-list improvements as areas for further development.
                   </p>
@@ -4689,13 +4885,13 @@ export default function Page() {
 
             {/* WHAT I LEARNED */}
             <section className="space-y-6 border-t-2 border-black pt-8">
-              <p className="font-mono text-[10px] font-bold text-[#00a8b5] uppercase tracking-widest">
+              <p className="font-mono text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                 05 // What I Learned
               </p>
 
               <div className="space-y-3">
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">01</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">01</p>
                   <h4 className="font-black text-xl uppercase mt-2">Validation has layers.</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     Client-side checks can improve the experience, but they should not replace server-side validation.
@@ -4703,7 +4899,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-white p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">02</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">02</p>
                   <h4 className="font-black text-xl uppercase mt-2">Testing changes the build.</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     User observation and security testing exposed issues that would not be obvious from the happy path alone.
@@ -4711,7 +4907,7 @@ export default function Page() {
                 </div>
 
                 <div className="border-2 border-black bg-[#dffcff] p-5">
-                  <p className="font-mono text-[9px] font-black text-[#00a8b5] uppercase tracking-widest">03</p>
+                  <p className="font-mono text-[9px] font-black text-[#00f0ff] uppercase tracking-widest">03</p>
                   <h4 className="font-black text-xl uppercase mt-2">Prototype ≠ production.</h4>
                   <p className="text-sm text-zinc-700 leading-relaxed mt-2">
                     A working prototype can still reveal clear next steps for stronger authentication, session security and accessibility.
@@ -4785,7 +4981,7 @@ export default function Page() {
               <section className="space-y-5">
 
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#39ff14] font-bold mb-3">
+                  <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#16752b] font-bold mb-3">
                     MACHINE LEARNING // BINARY CLASSIFICATION // 2025
                   </p>
 
@@ -4812,10 +5008,10 @@ export default function Page() {
 
               {/* 01 — THE PROBLEM */}
               <section className="space-y-6 border-t-2 border-black pt-8">
+              <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
+                01 // The Problem
+              </p>
 
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
-                  01 // The Problem
-                </p>
 
                 <h3 className="text-2xl sm:text-3xl font-black leading-tight">
                   Start with the data imbalance.
@@ -4884,10 +5080,11 @@ export default function Page() {
                     />
                   </div>
 
-                  <div className="mt-3 border-t-2 border-black pt-3">
-                    <p className="font-mono text-xs font-black uppercase tracking-widest text-[#39ff14]">
-                      BASELINE // CLASS IMBALANCE
-                    </p>
+                  <div className="mt-3 border-t-2 border-black pt-3">  
+                  <p className="font-mono text-sm sm:text-xs font-black uppercase tracking-widest text-[#16752b]">
+                    BASELINE // CLASS IMBALANCE
+                  </p>
+
 
                     <p className="mt-2 text-sm font-bold leading-relaxed">
                       The initial model predicted only the negative class, exposing the
@@ -4901,7 +5098,7 @@ export default function Page() {
               {/* 02 — THE APPROACH */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                   02 // The Approach
                 </p>
 
@@ -5000,11 +5197,10 @@ export default function Page() {
 
 
               {/* 03 — NETWORK ARCHITECTURE */}
-              <section className="space-y-6 border-t-2 border-black pt-8">
-
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
-                  03 // Network Architecture
-                </p>
+              <section className="space-y-6 border-t-2 border-black pt-8">   
+              <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
+                03 // Network Architecture
+              </p>
 
                 <h3 className="text-2xl sm:text-3xl font-black leading-tight">
                   A deliberately compact neural network.
@@ -5188,7 +5384,7 @@ export default function Page() {
 
                     <div className="grid grid-cols-2 gap-2 mt-4 font-mono text-[10px] font-bold">
                       <div className="border-2 border-black bg-zinc-100 p-3">
-                        <span className="text-[#39ff14]">912</span>
+                        <span className="text-[#16752b]">912</span>
                         <br />
                         TRUE NEGATIVES
                       </div>
@@ -5206,7 +5402,7 @@ export default function Page() {
                       </div>
 
                       <div className="border-2 border-black bg-zinc-100 p-3">
-                        <span className="text-[#39ff14]">856</span>
+                        <span className="text-[#16752b]">856</span>
                         <br />
                         TRUE POSITIVES
                       </div>
@@ -5227,7 +5423,7 @@ export default function Page() {
               {/* 04 — WHAT THE EXPERIMENT SHOWED */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                   04 // What the Experiment Showed
                 </p>
 
@@ -5238,7 +5434,7 @@ export default function Page() {
                 <div className="space-y-3">
 
                   <div className="border-2 border-black bg-white p-5">
-                    <p className="font-mono text-[9px] font-bold text-[#39ff14] uppercase tracking-widest">
+                    <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                       DATA
                     </p>
 
@@ -5253,7 +5449,7 @@ export default function Page() {
                   </div>
 
                   <div className="border-2 border-black bg-white p-5">
-                    <p className="font-mono text-[9px] font-bold text-[#39ff14] uppercase tracking-widest">
+                    <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                       RESAMPLING
                     </p>
 
@@ -5268,7 +5464,7 @@ export default function Page() {
                   </div>
 
                   <div className="border-2 border-black bg-white p-5">
-                    <p className="font-mono text-[9px] font-bold text-[#39ff14] uppercase tracking-widest">
+                    <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                       ARCHITECTURE
                     </p>
 
@@ -5290,7 +5486,7 @@ export default function Page() {
 
               {/* DATA SOURCE */}
               <section className="space-y-4 border-t-2 border-black pt-8">
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                   06 // Data Source
                 </p>
 
@@ -5331,7 +5527,7 @@ export default function Page() {
               {/* 06 — WHAT I LEARNED */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#39ff14] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] font-bold text-[#16752b] uppercase tracking-widest">
                   07 // What I Learned
                 </p>
 
@@ -5772,10 +5968,10 @@ export default function Page() {
               {/* PROJECT INTRO */}
               <section className="space-y-5">
 
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-[#00f0ff] font-bold mb-3">
-                    PYTHON // SOFTWARE PROJECT // 2025
-                  </p>
+                <div>  
+                <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#009fbd] font-bold mb-3">
+                  PYTHON // SOFTWARE PROJECT // 2025
+                </p>
 
                   <div className="flex flex-wrap items-center gap-2">
 
@@ -5790,10 +5986,28 @@ export default function Page() {
                   </div>
 
                   <p className="mt-4 text-base sm:text-lg font-bold leading-relaxed max-w-xl">
-                    A Python-based library management system exploring object
-                    oriented programming, catalogue operations and book loans.
+                    A Python-based library management system developed to apply object-oriented 
+                    programming to a practical software problem. The application models books, 
+                    users and loans, bringing together catalogue operations, book availability 
+                    and borrowing workflows. I then refined the project for publication, 
+                    adding a dedicated unit test suite and documentation to make the code 
+                    easier to understand and run.
                   </p>
                 </div>
+
+
+                <div className="flex flex-wrap gap-3 mt-8">
+                  <a
+                    href="https://github.com/akreative-dev/library-catalogue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(event) => event.stopPropagation()}
+                    className="inline-flex items-center bg-white text-black px-4 py-2 border-2 border-black font-mono text-xs font-bold uppercase tracking-wider shadow-[4px_4px_0px_#00f0ff] hover:bg-black hover:text-white hover:shadow-[6px_6px_0px_#00f0ff] transition-all"
+                  >
+                    VIEW CODE ↗
+                  </a>
+                </div>
+
 
               </section>
 
@@ -5801,7 +6015,7 @@ export default function Page() {
               {/* 01 — THE MODEL */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#009fbd] font-bold mb-3">
                   01 // The Model
                 </p>
 
@@ -5865,7 +6079,7 @@ export default function Page() {
               {/* 02 — CATALOGUE OPERATIONS */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] font-bold text-[#009fbd] uppercase tracking-widest">
                   02 // Catalogue Operations
                 </p>
 
@@ -5910,7 +6124,7 @@ export default function Page() {
               {/* 03 — LOANS */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#009fbd] font-bold mb-3">
                   03 // Loans
                 </p>
 
@@ -5962,7 +6176,7 @@ export default function Page() {
               {/* 04 — WHAT I LEARNED */}
               <section className="space-y-6 border-t-2 border-black pt-8">
 
-                <p className="font-mono text-[10px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#009fbd] font-bold mb-3">
                   04 // What I Learned
                 </p>
 
@@ -5974,7 +6188,7 @@ export default function Page() {
 
                   <div className="border-2 border-black bg-white p-5">
 
-                    <p className="font-mono text-[9px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                    <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
                       OBJECT-ORIENTED DESIGN
                     </p>
 
@@ -5991,7 +6205,7 @@ export default function Page() {
 
                   <div className="border-2 border-black bg-white p-5">
 
-                    <p className="font-mono text-[9px] font-bold text-[#00f0ff] uppercase tracking-widest">
+                    <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
                       STATE MANAGEMENT
                     </p>
 
@@ -6018,10 +6232,80 @@ export default function Page() {
                     </p>
 
                   </div>
+                </div>
+              </section>
+
+
+              {/* 05 — TESTING & VALIDATION */}
+              <section className="space-y-6 border-t-2 border-black pt-8">
+
+                <p className="font-mono text-xs sm:text-[10px] uppercase tracking-widest text-[#00f0ff] font-bold mb-3">
+                  05 // Testing & Validation
+                </p>
+
+                <h3 className="text-2xl sm:text-3xl font-black leading-tight">
+                  Test the behaviour, not just the code.
+                </h3>
+
+                <p className="text-sm sm:text-base text-zinc-700 leading-relaxed text-justify">
+                  I developed a dedicated automated test suite to check the
+                  core behaviours of the library system, including book
+                  management, catalogue operations, user handling and
+                  borrowing workflows.
+                </p>
+
+                <div className="grid sm:grid-cols-2 gap-3">
+
+                  <div className="border-2 border-black bg-white p-5">
+                    <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
+                      01 // TEST SUITE
+                    </p>
+
+                    <h4 className="text-lg font-black uppercase mt-2">
+                      19 tests passed
+                    </h4>
+
+                    <p className="mt-2 text-sm text-zinc-700 leading-relaxed">
+                      Automated checks written with Python's unittest
+                      framework to verify key application behaviours.
+                    </p>
+                  </div>
+
+                  <div className="border-2 border-black bg-white p-5">
+                    <p className="font-mono text-[9px] font-bold text-[#009fbd] uppercase tracking-widest">
+                      02 // MAINTAINABILITY
+                    </p>
+
+                    <h4 className="text-lg font-black uppercase mt-2">
+                      Separate test module
+                    </h4>
+
+                    <p className="mt-2 text-sm text-zinc-700 leading-relaxed">
+                      Kept the automated tests in test_library.py,
+                      separate from the application module.
+                    </p>
+                  </div>
 
                 </div>
 
+                <div className="flex flex-wrap items-center gap-3 mt-6">
+                  <span className="inline-flex items-center border-2 border-black bg-white px-4 py-3 font-mono text-xs font-bold shadow-[4px_4px_0px_#00f0ff]">
+                    PYTHON // UNIT TESTS: 19 PASS
+                  </span>
+
+                  <a
+                    href="https://github.com/akreative-dev/library-catalogue"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(event) => event.stopPropagation()}
+                    className="inline-flex items-center gap-2 border-2 border-black bg-black text-white px-4 py-3 font-mono text-xs font-bold hover:bg-[#00f0ff] hover:text-black transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#00f0ff]"
+                  >
+                    VIEW TESTS ON GITHUB <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+
               </section>
+
 
 
             </div>
@@ -7435,7 +7719,7 @@ export default function Page() {
                 <div className="border-2 border-black bg-white shadow-[6px_6px_0px_#000]">
                   <div className="relative w-full aspect-[16/10] overflow-hidden">
                     <Image
-                      src="/FMP/CollegeFMP13.jpg"
+                      src="/FMP/CollegeFMP3.jpg"
                       alt="Student Handbook editorial spread"
                       fill
                       className="object-cover"
