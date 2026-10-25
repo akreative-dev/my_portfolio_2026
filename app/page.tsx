@@ -164,6 +164,51 @@ export default function Page() {
   const [, setIntroFinished] = useState<boolean>(false);
   const [isHoveringCore, setIsHoveringCore] = useState<boolean>(false);
 
+  const openProject = (projectId: number | string) => {
+  const isDrawerOpen = expandedProject !== null;
+
+  const nextState = {
+    ...window.history.state,
+    projectDrawer: true,
+    projectId,
+  };
+
+  if (isDrawerOpen) {
+    // Switch projects without adding another Back step.
+    window.history.replaceState(nextState, "", window.location.href);
+  } else {
+    // Give the browser a history entry for the drawer.
+    window.history.pushState(nextState, "", window.location.href);
+  }
+
+  setExpandedProject(projectId);
+};
+
+const closeProject = () => {
+  if (window.history.state?.projectDrawer) {
+    // Back closes the drawer and preserves Forward navigation.
+    window.history.back();
+  } else {
+    setExpandedProject(null);
+  }
+};
+
+useEffect(() => {
+  const handlePopState = (event: PopStateEvent) => {
+    if (event.state?.projectDrawer) {
+      setExpandedProject(event.state.projectId);
+    } else {
+      setExpandedProject(null);
+    }
+  };
+
+  window.addEventListener("popstate", handlePopState);
+
+  return () => {
+    window.removeEventListener("popstate", handlePopState);
+  };
+}, []);
+
   // Skill definitions
   const skills = [
   {
@@ -704,8 +749,7 @@ export default function Page() {
                     key={project.id}
                     onClick={(e) => {
                       e.stopPropagation();
-
-                      setExpandedProject(project.id);
+                      openProject(project.id);
                       setActiveSkill(null);
                     }}
                     className="w-full border-2 border-black bg-[#fdfcf0] px-3 py-2.5 text-left flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-tight hover:bg-black hover:text-white transition-colors cursor-pointer"
@@ -788,7 +832,11 @@ export default function Page() {
           {/* ARTEFACT A: FREEFROM14 CARD */}
           <div
             id="freefrom-card"
-            onClick={() => setExpandedProject(expandedProject === 'freefrom' ? null : 'freefrom')}
+            onClick={() =>
+              expandedProject === "freefrom"
+                ? closeProject()
+                : openProject("freefrom")
+            }
             className={`group md:col-span-2 xl:col-span-6 border-2 border-black p-8 bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] opacity-95 hover:opacity-100 hover:shadow-[12px_12px_0px_#7000ff] ${expandedProject === 'freefrom' ? 'ring-4 ring-[#7000ff]' : ''
               }`}
           >
@@ -892,7 +940,11 @@ export default function Page() {
           {/* ARTEFACT B: CIFAR-10 IMAGE CLASSIFICATION CARD*/}
           <div
             id="cifar-card"
-            onClick={() => setExpandedProject('cifar')}
+            onClick={() =>
+              expandedProject === "cifar"
+                ? closeProject()
+                : openProject("cifar")
+            }
             className="group md:col-span-1 xl:col-span-3 h-full border-2 border-black p-6 bg-white opacity-95 hover:opacity-100 transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[12px_12px_0px_#ff00ff]"
           >
             <div className="relative w-full aspect-[16/9] overflow-hidden border-2 border-black mb-5">
@@ -947,12 +999,11 @@ export default function Page() {
           {/* ARTEFACT C: BREAST CANCER CLASSIFICATION CARD*/}
           <div
             id="breast-cancer-card"
-            onClick={() => {
-              console.log("BREAST CLICKED");
-              setExpandedProject(
-                expandedProject === 'breast' ? null : 'breast'
-              );
-            }}
+            onClick={() =>
+              expandedProject === "breast"
+                ? closeProject()
+                : openProject("breast")
+            }
             className={`group md:col-span-1 xl:col-span-3 h-full border-2 border-2 border-black p-6 bg-white opacity-95 hover:opacity-100 transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[12px_12px_0px_#7000ff] ${
               expandedProject === 'breast' ? 'ring-4 ring-[#7000ff]' : ''
             }`}
@@ -998,8 +1049,13 @@ export default function Page() {
           {/* ARTEFACT D: WEARVIEW ACADEMY CARD */}
           <div
             id="wearview-card"
-            onClick={() => setExpandedProject(expandedProject === 'wearview' ? null : 'wearview')}
-            className={`group md:col-span-2 xl:col-span-6 xl:row-span-2 border-2 border-black p-8 bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] opacity-95 hover:opacity-100 hover:shadow-[12px_12px_0px_#00f0ff] ${expandedProject === 'wearview' ? 'ring-4 ring-[#00f0ff]' : ''
+            onClick={() =>
+              expandedProject === "wearview"
+                ? closeProject()
+                : openProject("wearview")
+            }
+            className={`group md:col-span-2 xl:col-span-6 xl:row-span-2 border-2 border-black p-8 bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] opacity-95 hover:opacity-100 hover:shadow-[12px_12px_0px_#00f0ff] 
+              ${expandedProject === 'wearview' ? 'ring-4 ring-[#00f0ff]' : ''
               }`}
           >
             <div className="relative w-full aspect-[16/7] overflow-hidden border-2 border-black mb-6">
@@ -1056,9 +1112,9 @@ export default function Page() {
           <div
             id="bank-card"
             onClick={() =>
-              setExpandedProject(
-                expandedProject === 'bank' ? null : 'bank'
-              )
+              expandedProject === "bank"
+                ? closeProject()
+                : openProject("bank")
             }
             className={`group md:col-span-2 xl:col-span-4 xl:row-span-2 border-2 border-black p-7 bg-white opacity-95 gap-8 h-full hover:opacity-100 transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[12px_12px_0px_#39ff14] ${
               expandedProject === 'bank' ? 'ring-4 ring-[#39ff14]' : ''
@@ -1143,9 +1199,9 @@ export default function Page() {
           <div
             id="quiz-card"
             onClick={() =>
-              setExpandedProject(
-                expandedProject === 'quiz' ? null : 'quiz'
-              )
+              expandedProject === "quiz"
+                ? closeProject()
+                : openProject("quiz")
             }
             className={`group md:col-span-2 xl:col-span-2 xl:row-span-1 h-full gap-8 border-2 border-black p-5 bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#ff00ff] ${
               expandedProject === 'quiz' ? 'ring-4 ring-[#ff00ff]' : ''
@@ -1205,9 +1261,9 @@ export default function Page() {
           <div
             id="catalogue-card"
             onClick={() =>
-              setExpandedProject(
-                expandedProject === 'catalogue' ? null : 'catalogue'
-              )
+              expandedProject === "catalogue"
+                ? closeProject()
+                : openProject("catalogue")
             }
             className={`group md:col-span-2 xl:col-span-2 xl:row-span-1 h-full gap-8 border-2 border-black p-5 bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#00f0ff] ${
               expandedProject === 'catalogue'
@@ -1345,11 +1401,9 @@ export default function Page() {
 
             <div
               onClick={() =>
-                setExpandedProject(
-                  expandedProject === 'portraits'
-                    ? null
-                    : 'portraits'
-                )
+                expandedProject === "portraits"
+                  ? closeProject()
+                  : openProject("portraits")
               }
               className={`group md:col-span-3 border-4 border-black bg-white cursor-pointer select-none transition-all duration-300 relative overflow-hidden shadow-[8px_8px_0px_#000] hover:shadow-[12px_12px_0px_#ff00ff] ${
                 expandedProject === 'portraits'
@@ -1455,11 +1509,9 @@ export default function Page() {
 
             <div
               onClick={() =>
-                setExpandedProject(
-                  expandedProject === 'typography'
-                    ? null
-                    : 'typography'
-                )
+                expandedProject === "typography"
+                  ? closeProject()
+                  : openProject("typography")
               }
               className={`group border-4 border-black bg-white cursor-pointer select-none transition-all duration-300 relative overflow-hidden shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#00f0ff] ${
                 expandedProject === 'typography'
@@ -1544,9 +1596,9 @@ export default function Page() {
             {/* VISUAL ARCHIVE: MANIFESTO CARD*/}
             <div
               onClick={() =>
-                setExpandedProject(
-                  expandedProject === 'manifesto' ? null : 'manifesto'
-                )
+                expandedProject === "manifesto"
+                  ? closeProject()
+                  : openProject("manifesto")
               }
               className={`group h-full border-2 border-black bg-white transition-all duration-300 relative cursor-pointer select-none shadow-[6px_6px_0px_#000] hover:shadow-[10px_10px_0px_#ff00ff] ${
                 expandedProject === 'manifesto' ? 'ring-4 ring-[#ff00ff]' : ''
@@ -1610,11 +1662,9 @@ export default function Page() {
             
             <div
               onClick={() =>
-                setExpandedProject(
-                  expandedProject === 'student-handbook'
-                    ? null
-                    : 'student-handbook'
-                )
+                expandedProject === "student-handbook"
+                  ? closeProject()
+                  : openProject("student-handbook")
               }
               className={`group md:col-span-1 border-4 border-black bg-white cursor-pointer select-none transition-all duration-300 relative overflow-hidden shadow-[8px_8px_0px_#000] hover:shadow-[12px_12px_0px_#7000ff] ${
                 expandedProject === 'student-handbook'
@@ -1693,7 +1743,7 @@ export default function Page() {
       </section>
 
       {/* ========================================== */}
-      {/* 📜 ACT IV: MANIFESTO AREA                  */}
+      {/* IV: MANIFESTO AREA                  */}
       {/* ========================================== */}
       <section id="manifesto" className="min-h-screen bg-white border-t-4 border-black p-8 md:p-16 flex flex-col items-center scroll-mt-20">
         <div className="max-w-5xl w-full flex flex-col lg:flex-row justify-between items-start gap-12 pt-12">
@@ -1789,46 +1839,46 @@ export default function Page() {
 
           {/* Right Block: Portrait Photo */}
           <div className="shrink-0 w-full max-w-[220px] sm:max-w-[240px] md:max-w-[260px] lg:w-[320px] lg:max-w-none mx-auto lg:mx-0 lg:sticky lg:top-28 select-none">
-  <div className="relative group/portrait p-3">
+          <div className="relative group/portrait p-3">
 
-    {/* Star shadow */}
-    <div
-      className="absolute inset-3 bg-black translate-x-2 translate-y-2 transition-transform group-hover/portrait:translate-x-3 group-hover/portrait:translate-y-3 duration-200"
-      style={{
-        clipPath:
-          'polygon(50% 0%, 61% 20%, 83% 10%, 75% 33%, 98% 35%, 80% 53%, 90% 75%, 68% 70%, 65% 95%, 48% 78%, 30% 92%, 32% 68%, 8% 70%, 21% 51%, 2% 31%, 25% 32%, 18% 9%, 40% 19%)'
-      }}
-    />
+            {/* Star shadow */}
+            <div
+              className="absolute inset-3 bg-black translate-x-2 translate-y-2 transition-transform group-hover/portrait:translate-x-3 group-hover/portrait:translate-y-3 duration-200"
+              style={{
+                clipPath:
+                  'polygon(50% 0%, 61% 20%, 83% 10%, 75% 33%, 98% 35%, 80% 53%, 90% 75%, 68% 70%, 65% 95%, 48% 78%, 30% 92%, 32% 68%, 8% 70%, 21% 51%, 2% 31%, 25% 32%, 18% 9%, 40% 19%)'
+              }}
+            />
 
-    {/* Star photo */}
-    <div
-      className="absolute inset-3 bg-zinc-200 border-2 border-black overflow-hidden transition-transform group-hover/portrait:-translate-x-1 group-hover/portrait:-translate-y-1 duration-200 z-10"
-      style={{
-        clipPath:
-          'polygon(50% 0%, 61% 20%, 83% 10%, 75% 33%, 98% 35%, 80% 53%, 90% 75%, 68% 70%, 65% 95%, 48% 78%, 30% 92%, 32% 68%, 8% 70%, 21% 51%, 2% 31%, 25% 32%, 18% 9%, 40% 19%)'
-      }}
-    >
-      <Image
-        src="/my_portrait.png"
-        alt="Aleksandra Kowalska Portrait"
-        fill
-        priority
-        className="object-cover filter grayscale contrast-125 transition-all duration-300 group-hover/portrait:grayscale-0 group-hover/portrait:scale-105"
-      />
-    </div>
+            {/* Star photo */}
+            <div
+              className="absolute inset-3 bg-zinc-200 border-2 border-black overflow-hidden transition-transform group-hover/portrait:-translate-x-1 group-hover/portrait:-translate-y-1 duration-200 z-10"
+              style={{
+                clipPath:
+                  'polygon(50% 0%, 61% 20%, 83% 10%, 75% 33%, 98% 35%, 80% 53%, 90% 75%, 68% 70%, 65% 95%, 48% 78%, 30% 92%, 32% 68%, 8% 70%, 21% 51%, 2% 31%, 25% 32%, 18% 9%, 40% 19%)'
+              }}
+            >
+              <Image
+                src="/my_portrait.png"
+                alt="Aleksandra Kowalska Portrait"
+                fill
+                priority
+                className="object-cover filter grayscale contrast-125 transition-all duration-300 group-hover/portrait:grayscale-0 group-hover/portrait:scale-105"
+              />
+            </div>
 
-    {/* Keeps the wrapper at the correct height */}
-    <div className="w-full aspect-square" />
+            {/* Keeps the wrapper at the correct height */}
+            <div className="w-full aspect-square" />
 
-  </div>
-</div>
-
+          </div>
         </div>
-      </section>
+
+      </div>
+    </section>
 
 
       {/* ========================================== */}
-      {/* 📜 ACT V: TIMELINE & HISTORY             */}
+      {/* V: TIMELINE & HISTORY             */}
       {/* ========================================== */}
       <section id="history" className="py-16 pb-24 bg-[#fdfcf0] px-6 md:px-16 scroll-mt-20 border-t-4 border-black">
 
@@ -1940,7 +1990,7 @@ export default function Page() {
       >
         {/* BACKDROP */}
         <div
-          onClick={() => setExpandedProject(null)}
+          onClick={closeProject}
           className="absolute inset-0 bg-gradient-to-tr from-[#7000ff]/40 via-black/20 to-[#7000ff]/40 backdrop-blur-md"
         />
         {/* PANEL */}
@@ -1954,7 +2004,7 @@ export default function Page() {
           <div className="p-6 border-b-4 border-black flex justify-between items-center bg-white">
             <span className="font-mono text-xs font-bold bg-black text-[#39ff14] px-2 py-0.5">// Project overview</span>
             <button
-              onClick={() => setExpandedProject(null)}
+              onClick={closeProject}
               className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
             >
               CLOSE_X
@@ -2789,7 +2839,7 @@ export default function Page() {
       >
         {/* BACKDROP */}
         <div
-          onClick={() => setExpandedProject(null)}
+          onClick={closeProject}
           className="absolute inset-0 bg-gradient-to-tr from-cyan-500/40 via-black/20 to-fuchsia-500/40 backdrop-blur-md"
         />
 
@@ -2808,7 +2858,7 @@ export default function Page() {
             </span>
 
             <button
-              onClick={() => setExpandedProject(null)}
+              onClick={closeProject}
               className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
             >
               CLOSE_X
@@ -3786,7 +3836,7 @@ export default function Page() {
             >
               {/* BACKDROP */}
               <div
-                onClick={() => setExpandedProject(null)}
+                onClick={closeProject}
                 className="absolute inset-0 bg-gradient-to-tr from-[#7000ff]/40 via-black/20 to-[#7000ff]/40 backdrop-blur-md"
               />
 
@@ -3806,7 +3856,7 @@ export default function Page() {
             </span>
 
             <button
-              onClick={() => setExpandedProject(null)}
+              onClick={closeProject}
               className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
             >
               CLOSE_X
@@ -4503,7 +4553,7 @@ export default function Page() {
       >
         {/* CYAN BACKDROP */}
         <div
-          onClick={() => setExpandedProject(null)}
+          onClick={closeProject}
           className="absolute inset-0 bg-gradient-to-tr from-[#00f0ff]/40 via-black/20 to-[#00f0ff]/30 backdrop-blur-md"
         />
 
@@ -4523,7 +4573,7 @@ export default function Page() {
             </span>
 
             <button
-              onClick={() => setExpandedProject(null)}
+              onClick={closeProject}
               className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
             >
               CLOSE_X
@@ -4945,7 +4995,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-tr from-[#39ff14]/35 via-black/20 to-[#39ff14]/20 backdrop-blur-md"
           />
 
@@ -4967,7 +5017,7 @@ export default function Page() {
               </div>
 
               <button
-                onClick={() => setExpandedProject(null)}
+                onClick={closeProject}
                 className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
               >
                 CLOSE_X
@@ -5597,7 +5647,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-bl from-[#ff00ff]/35 via-black/20 to-[#ff00ff]/20 backdrop-blur-md"
           />
 
@@ -5619,7 +5669,7 @@ export default function Page() {
               </div>
 
               <button
-                onClick={() => setExpandedProject(null)}
+                onClick={closeProject}
                 className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
               >
                 CLOSE_X
@@ -5933,7 +5983,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-bl from-[#00f0ff]/35 via-black/20 to-[#00f0ff]/20 backdrop-blur-md"
           />
 
@@ -5955,7 +6005,7 @@ export default function Page() {
               </div>
 
               <button
-                onClick={() => setExpandedProject(null)}
+                onClick={closeProject}
                 className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
               >
                 CLOSE_X
@@ -6326,7 +6376,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-bl from-[#ff00ff]/35 via-black/20 to-[#7000ff]/20 backdrop-blur-md"
           />
 
@@ -6352,7 +6402,7 @@ export default function Page() {
                 </div>
 
                 <button
-                  onClick={() => setExpandedProject(null)}
+                  onClick={closeProject}
                   className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
                 >
                   CLOSE_X
@@ -6686,7 +6736,7 @@ export default function Page() {
 
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-bl from-[#00f0ff]/30 via-black/20 to-[#7000ff]/20 backdrop-blur-md"
           />
 
@@ -6712,7 +6762,7 @@ export default function Page() {
                 </div>
 
                 <button
-                  onClick={() => setExpandedProject(null)}
+                  onClick={closeProject}
                   className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
                 >
                   CLOSE_X
@@ -7253,7 +7303,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-tr from-[#ff00ff]/35 via-black/20 to-[#7000ff]/20 backdrop-blur-md"
           />
 
@@ -7273,7 +7323,7 @@ export default function Page() {
                 </span>
 
                 <button
-                  onClick={() => setExpandedProject(null)}
+                  onClick={closeProject}
                   className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
                 >
                   CLOSE_X
@@ -7617,7 +7667,7 @@ export default function Page() {
         >
           {/* BACKDROP */}
           <div
-            onClick={() => setExpandedProject(null)}
+            onClick={closeProject}
             className="absolute inset-0 bg-gradient-to-bl from-[#7000ff]/35 via-black/20 to-[#7000ff]/20 backdrop-blur-md"
           />
 
@@ -7642,7 +7692,7 @@ export default function Page() {
                 </div>
 
                 <button
-                  onClick={() => setExpandedProject(null)}
+                  onClick={closeProject}
                   className="border-2 border-black bg-white hover:bg-black hover:text-white px-2 py-1 font-mono text-xs font-bold transition-all cursor-pointer"
                 >
                   CLOSE_X
